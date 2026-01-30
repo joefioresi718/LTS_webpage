@@ -1,14 +1,14 @@
 # SPLAVU
 
-This is the repository that contains source code for the [SPLAVU website](https://joefioresi718.github.io/SPLAVU_webpage/).
+This is the repository that contains source code for the [Learning to Share (LTS) website](https://joefioresi718.github.io/LTS_webpage/).
 
 If you find SPLAVU useful for your work please cite:
 ```
-@inproceedings{fioresi2025privacy,
-  title={Privacy Beyond Pixels: Latent Anonymization for Privacy-Preserving Video Understanding},
-  author={Fioresi, Joseph and Dave, Ishan and Shah, Mubarak},
+@inproceedings{fioresi2026learning,
+  title={Learning to Share: Selective Memory for Efficient Parallel Agentic Systems},
+  author={Fioresi, Joseph and Kulkarni, Parth Parag and Vayani, Ashmal and Wang, Song and Shah, Mubarak},
   booktitle={arxiv},
-  year={2025}
+  year={2026}
 }
 ```
 

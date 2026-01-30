@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="SPLAVU utilizes latent anonymization to anonymize video features while maintaining utility performance for video understanding tasks.">
-  <meta name="keywords" content="SPLAVU, latent anonymization, privacy, action recognition, anomaly detection, temporal action detection, video understanding, ICLR 2026">
+        content="LTS improves efficiency of parallel agentic systems by selectively sharing memory.">
+  <meta name="keywords" content="LTS, selective memory, efficient parallel agentic systems, reinforcement learning, magentic one, m1 parallel">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Beyond Pixels: Latent Anonymization for Privacy-Preserving Video Understanding</title>
+  <title>Learning to Share: Selective Memory for Efficient Parallel Agentic Systems</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics
   <script async src=""></script>
@@ -48,12 +48,16 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Privacy Beyond Pixels: Latent Anonymization for Privacy-Preserving Video Understanding<br>[ICLR 2026]</h1>
+          <h1 class="title is-1 publication-title">Learning to Share: Selective Memory for Efficient Parallel Agentic Systems</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://joefioresi718.github.io/">Joseph Fioresi</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://daveishan.github.io/">Ishan Rajendrakumar Dave</a><sup>1</sup>,</span>
+              <a href="https://scholar.google.com/citations?user=OHC7c90AAAAJ&hl=en">Parth Parag Kulkarni</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://ashmalvayani.github.io/">Ashmal Vayani</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://songw-sw.github.io/">Song Wang</a><sup>1</sup>,</span>
             <span class="author-block">
               <a href="https://scholar.google.com/citations?user=p8gsO3gAAAAJ&hl=en&oi=ao">Mubarak Shah</a><sup>1</sup>,
             </span>
@@ -76,7 +80,7 @@
                 </a>
               </span> -->
               <span class="link-block">
-                <a href="./static/images/splavu_arxiv.pdf"
+                <a href="./static/images/lts_arxiv.pdf"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -228,7 +232,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We introduce a novel formulation of visual privacy preservation for video foundation models that operates entirely in the latent space. While spatio-temporal features learned by foundation models have deepened general understanding of video content, sharing or storing these extracted visual features for downstream tasks inadvertently reveals sensitive personal information like skin color, gender, or clothing. Current privacy preservation methods focus on input-pixel-level anonymization, which requires retraining the entire utility video model and results in task-specific anonymization, making them unsuitable for recent video foundational models. To address these challenges, we introduce a lightweight Anonymizing Adapter Module (AAM) that removes private information from video features while retaining general task utility. AAM can be applied in a plug-and-play fashion to frozen video encoders, minimizing the computational burden of finetuning and re-extracting features. Our framework employs three newly designed training objectives: (1) a clip-level self-supervised privacy objective to reduce mutual information between static clips, (2) a co-training objective to retain utility across seen tasks, and (3) a latent consistency loss for generalization on unseen tasks. Our extensive evaluations demonstrate a significant <strong>35%</strong> reduction in privacy leakage while maintaining near-baseline utility performance across various downstream tasks: Action Recognition (Kinetics400, UCF101, HMDB51), Temporal Action Detection (THUMOS14), and Anomaly Detection (UCF-Crime). We also provide an analysis on anonymization for sensitive <em>temporal</em> attribute recognition. Additionally, we propose new protocols for assessing gender bias in action recognition models, showing that our method effectively mitigates such biases and promotes more equitable video understanding.
+            Agentic systems solve complex tasks by coordinating multiple agents that iteratively reason, invoke tools, and exchange intermediate results. To improve robustness and solution quality, recent approaches deploy multiple agent teams running in parallel to explore diverse reasoning trajectories. However, parallel execution comes at a significant computational cost: when different teams independently reason about similar sub-problems or execute analogous steps, they repeatedly perform substantial overlapping computation. To address these limitations, in this paper, we propose <bf>Learning to Share (LTS)</bf>, a learned shared-memory mechanism for parallel agentic frameworks that enables selective cross-team information reuse while controlling context growth. LTS introduces a global memory bank accessible to all teams and a lightweight controller that decides whether intermediate agent steps should be added to memory or not. The controller is trained using stepwise reinforcement learning with usage-aware credit assignment, allowing it to identify information that is globally useful across parallel executions. Experiments on the AssistantBench and GAIA benchmarks show that LTS significantly reduces overall runtime while matching or improving task performance compared to memory-free parallel baselines, demonstrating that learned memory admission is an effective strategy for improving the efficiency of parallel agentic systems.
           </p>
         </div>
       </div>
@@ -253,13 +257,13 @@
   <div class="hero-body">
 	  <div class="container column is-four-fifths">
 		<center>
-			<h2 class="title is-3">Latent Space Anonymization</h2>
+			<h2 class="title is-3">Shared Memory for Parallel Agentic Systems</h2>
 		</center>
 		<div class="teaser-figure" style="margin-top: 0.75rem;">
 			<center>
 				<figure style="display: inline-block; margin: 0;">
 					<img src="./static/images/teaser_fig.svg" alt="Teaser Figure" style="max-width:100%; height:auto;">
-					<figcaption style="text-align: center; margin-top: 0.5rem;"><b>Figure 1:</b> Our proposed latent anonymization setup (<span style="color: red;">red</span>) utilizes large pretrained video encoders, applying a lightweight anonymizer that maintains performance on <em>multiple</em> video understanding tasks while strongly <u>reducing</u> performance on private attribute prediction tasks (right).</figcaption>
+					<figcaption style="text-align: center; margin-top: 0.5rem;"><b>Figure 1:</b> <b>Shared memory reduces redundant computation in parallel agentic execution.</b> Comparison of parallel agent teams solving a long-horizon task <i>without</i> (top) and <i>with</i> (bottom) shared memory. (a) Without shared memory, teams independently repeat overlapping intermediate steps (e.g., web search, table parsing, code writing), and errors in one branch propagate additional retries, increasing overall latency. (b) With a shared memory bank, teams reuse previously discovered intermediate results, avoiding redundant work and reducing error overhead. As a result, the system converges in fewer total steps and lower wall-clock time.</figcaption>
 				</figure>
 			</center>
 		</div>
@@ -277,15 +281,15 @@
       <div class="method-diagram">
         <img style="padding-top:10px" src="./static/images/main_architecture.svg">
         <figcaption style="text-align: center; margin-top: 10px;">
-          <b>Figure 2:</b> Workflow illustrating the SPLAVU training process. The process begins with a video clip, from which two random frames are sampled to create static clips. All clips are passed through the frozen video encoder to extract latent features, then further processed by our Anonymization Adapter Module (AAM). The temporal clip features are used for the latent consistency loss and given to the set of task-specific classifier heads. The two static clip features are utilized in the self-supervised mutual information minimization objective. Gradients from all losses are back-propagated through AAM.
+          <b>Figure 2:</b> <b>Learning to Share: selective shared memory for parallel agentic systems.</b> <b>(a)</b> Parallel agent teams execute independently while interacting with a central <i>Shared Memory Bank</i>. After each agent step, a learned <i>Memory Controller</i> evaluates the intermediate result and selectively admits high-utility information into shared memory as a key-value pair (step summary, agent output) or discards it. Teams may query stored keys to reuse previously discovered results to reduce redundant computation (shown only for team 3, but all teams follow the same memory retrieval). <b>(b)</b> The memory controller receives embeddings of the task query, existing memory keys, and the current step (agent input, output, and summary) for context. These are projected into a shared token space and processed by a lightweight controller LLM, which emits a single binary decision indicating whether the step should be stored. Selective admission maintains a high-quality shared memory while accelerating convergence.
         </figcaption>
       </div>
     </div>
 
-    <h2 class="title is-4" style="margin-top: 2rem;">Anonymization with Multitask Co-training</h2>
+    <h2 class="title is-4" style="margin-top: 2rem;">Method</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        To retain the action understanding capabilities of the pretrained model, we employ a co-training framework where multiple tasks collaborate to optimize performance. The action classifier head is trained using the standard cross-entropy loss. Our latent formulation enables, for the first time, anonymization training using gradients from alternate downstream utility tasks, namely Temporal Action Detection (TAD) and Anomaly Detection (AD). As such, we integrate training objectives from state-of-the-art approaches in TAD and AD. 
+        We propose <b>Learning to Share</b> (<b>LTS</b>), a learned shared-memory mechanism for parallel agentic systems that reduces redundant computation while preserving or improving task performance (Figure 2). Our method augments existing parallel agentic frameworks with a global memory bank and a lightweight controller that selectively admits intermediate agent steps based on their expected downstream utility.
       </h2>
       <!-- <div class="column is-centered">
         <img style="display: flex; width: 30%; height: 30%; margin: auto;" src="./static/images/adv.svg">
@@ -293,7 +297,7 @@
       
     </div>
 
-    <h2 class="title is-4">Regularization via Latent Consistency</h2>
+    <!-- <h2 class="title is-4">Regularization via Latent Consistency</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         Early experiments with the privacy and utility losses indicated that the anonymization process tends to overfit to the proxy-utility tasks used in training, compromising its effectiveness on unseen tasks. Consequently, the primary motivation behind introducing our latent consistency objective is to ensure that the anonymization learned by the model remains generalizable and is not biased toward the specific utility task(s) it is trained on. This can be accomplished by regularizing the anonymization to preserve the general latent structure of the utility encoder. To this end, we propose a latent consistency loss that encourages the model to preserve important latent features while still achieving privacy preservation.
@@ -302,23 +306,36 @@
         <img style="display: flex; width: 50%; height: 50%; margin: auto;" src="./static/images/latent_consistency.svg">
       </div>
       
-    </div>
+    </div> -->
 
-    <h2 class="title is-4">Clip-Level Self-Supervised Privacy Objective</h2>
+    <!-- <h2 class="title is-4">Clip-Level Self-Supervised Privacy Objective</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         Our clip-level self-supervised budget privacy objective is the key component for facilitating anonymization without requiring private attribute labels. The intuition is that two frames share a lot of mutual information, so if we <em>minimize</em> the similarity between them, the shared spatial information gets destroyed. A crucial difference setting SPLAVU apart from prior works is that the anonymizer works across the temporal dimension using 3D clip features instead of a 2D U-Net. This way, when combined with utility task losses, the anonymization model learns to remove all spatial information, maintaining only temporal information useful for solving the utility task.
-    </div>
+    </div> -->
   </div>
 </section>
 
 <section class="section" id="results">
   <div class="container is-max-desktop">
-    <h2 class="title is-4">Results</h2>
+    <h2 class="title is-4">Runtime Analysis</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        We first analyze wall-clock completion time on AssistantBench. Figure 3 shows a cumulative distribution function (CDF) plot of completion time for the baseline parallel agentic system and Learning to Share (<strong>LTS</strong>). Our shared-memory approach consistently completes tasks faster than M1-Parallel, despite the additional overhead of maintaining a memory. Compared to M1-Parallel without memory, shared memory reduces mean completion time by an average of at <b>8.4 minutes</b> and shifts the entire runtime distribution leftward, indicating faster convergence across tasks. <b>Table 3</b> additionally shows the average runtime of each task in seconds.
+      </h2>
+      <figure>
+        <img src="./static/images/runtime_cdf.svg">
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Figure 3:</b> Cumulative distribution of wall-clock completion times on AssistantBench. Our <strong>LTS</strong> shared-memory approach shifts the runtime distribution left relative to memory-free M1-Parallel, indicating faster completion for a larger fraction of tasks. Selectively sharing intermediate results reduces redundant computation and lowers overall latency.
+        </figcaption>
+      </figure>
+    </div>
+
+    <h2 class="title is-4">Task Performance</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         <p>
-          Below are quantitative results covering privacy protocols and a variety of downstream tasks. We observe in Table 1 that our approach consistently generalizes well across all tasks, closely maintaining the performance of the non-anonymized videos. In contrast, previous methods struggle to preserve performance uniformly across tasks, evident in the temporal action detection results. Experiments with large video foundation models see similar performance trends, confirming the efficacy and scalability of SPLAVU.
+          Notably, the runtime improvements do not come at the cost of degraded solution quality. Table 1 shows that selective shared memory improves performance across both benchmarks and model backbones. Compared to the memory-free M1-Parallel, <strong>LTS</strong> achieves higher accuracy across nearly all difficulty levels while reducing runtime. On GAIA, <strong>LTS</strong> consistently improves performance across all difficulty tiers, with overall absolute gains of <b>+5.6 pp</b> for Qwen3-32B and <b>+1.2 pp</b> for GPT-5.1. A similar trend is seen with AssistantBench. These gains indicate that selectively sharing verified intermediate steps not only reduces redundant computation but also steers teams toward more reliable reasoning trajectories. Notably, the improvements are most pronounced on the hardest subsets of each benchmark, suggesting that Learning to Share is particularly effective for long-horizon tasks with many required steps/possible solution paths.
         </p>
       </h2>
       <figure>
@@ -327,47 +344,34 @@
           <b>Table 1:</b> Performance of anonymization methods across a downstream task evaluation suite. Methods in <span style="color: gray;">gray</span> train using private attribute labels. Our method achieves a strong improvement in privacy-preservation with minimal reduction in task performance.
         </figcaption>
       </figure>
-      <h2 class="title is-4">Task Ablation</h2>
-      <h2 class="content has-text-justified">
-        Our important ablation in Table 2 demonstrates the effects of training our anonymizer without specific tasks. Notably, the <span style="color: cyan;">highlighted cells</span> show impressive generalization to unseen tasks with just a minor drop in performance compared to training on them. For example, looking at row (c) shows anonymization training with only action detection, yet the performance on action recognition and anomaly detection remain within <strong>1.3%</strong> of the non-anonymized score. Across the board, thanks to the latent consistency loss, performance is not dependent on having seen the given utility task during training, proving that SPLAVU can effectively <em>generalize to unseen tasks</em>.
-      </h2>
-      <figure>
-        <img src="./static/images/task_ablation.png">
-        <figcaption style="text-align: center; margin-top: 10px;"><b>Table 2:</b> Ablation on tasks seen during anonymization training. The checkmark (<span style="color: gray;">✓</span>) labels seen tasks, x-mark (<span style="color: red;">X</span>) and <span style="color: cyan;">highlighted cells</span> indicate tasks unseen during training. Performance generalizes to unseen tasks, while directly training further improves results.</figcaption>
-      </figure>
     </div>
   </div>
 </section>
 
-
-
-<section class="section" id="bias-evaluation">
+<section class="section" id="ablation">
   <div class="container is-max-desktop">
-    <h2 class="title is-4">Bias Evaluation</h2>
+    <h2 class="title is-4">Shared Memory Admission Variants</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
-        The first row of Table 3 shows the performance difference between each gender presentation subclass in the NTU-Bias-F protocol, where the action <em>brush_hair</em> is chosen as the gendered shortcut action label. The baseline performance disparity between perceived gender subclasses is an unacceptably large 9.42%. Applying latent anonymization impressively reduces this gap by a relative <strong>42.3%</strong>. The second row includes results for the complimentary protocol NTU-Bias-M (also <em>brush_hair</em> shortcut). Interestingly, the baseline subclass performance disparity is less than that of NTU-Bias-F (5.00%), but our method is still capable of reducing this unfair split and improving overall performance.
-
-        To confirm that these observations hold true in a real-world setting, we look at the final row of Table 2 to see the performance on the TSH protocol. Notably, our method improves the both the classifier quality and fairness. In this realistic scenario with a naturally occurring bias, SPLAVU reduces the gap between perceived gender subclasses by an astonishing relative <strong>39.5%</strong>. Please refer to the paper for more details on protocol creation.
+        Table 2 compares different strategies for admitting intermediate steps into shared memory. All memory-enabled variants reduce overall runtime relative to the memory-free baseline, confirming that cross-team reuse of intermediate results improves execution efficiency. However, naively admitting all intermediate steps (<strong>LTS-AddAll</strong>) yields mixed performance, with reduced runtime but a drop in task accuracy, indicating that unfiltered memory can introduce irrelevant or misleading information into team contexts. Filtering memory using a full LLM (<strong>LTS-LLM</strong>) improves accuracy over <strong>LTS-AddAll</strong>, but incurs additional computational overhead. In contrast, the proposed learned selective memory (<strong>LTS</strong>) achieves the best accuracy on both benchmarks while maintaining low runtime. These results highlight the importance of learned memory admission for balancing efficiency gains from shared memory with reliable task performance. This robustness arises from the usage-aware reinforcement learning objective, which explicitly rewards useful memory admissions that contribute to successful task completion, discouraging the retention of noisy steps.
       </h2>
       <figure>
-        <img src="./static/images/bias_evaluation.png">
-        <figcaption style="text-align: center; margin-top: 10px;">
-          <b>Table 3:</b> Bias evaluation across gendered groups; anonymization reduces subclass accuracy gaps.
-        </figcaption>
+        <img src="./static/images/ablation_table.png">
+        <figcaption style="text-align: center; margin-top: 10px;"><b>Table 2:</b> Comparison of shared memory admission strategies. We report task accuracy and average runtime (GPT-5.1). Naively sharing all intermediate steps (<strong>LTS-AddAll</strong>) reduces runtime but can hurt accuracy due to noisy memories. LLM-based filtering (<strong>LTS-LLM</strong>) partially mitigates this trade-off. The proposed selective memory (<strong>LTS</strong>) achieves the best overall balance, improving task accuracy while substantially reducing runtime.</figcaption>
       </figure>
     </div>
   </div>
 </section>
- 
- 
+
+
+
 <section class="section" id="conclusion">
   <div class="container is-max-desktop">
     <h2 class="title is-4">Conclusion</h2>
     <div class="column has-text-justified">
       <h2 class="content has-text-justified">
         <p>
-          We propose an innovative privacy-preserving method via a novel formulation of latent space anonymization called SPLAVU. Our method is the first to enable generalized anonymization for unprecedented performance across various downstream video understanding tasks, including action recognition, anomaly detection, and temporal action detection. It employs a clip-level self-supervised privacy budget within the latent space, coupled with a latent consistency loss to maintain its powerful generalization capability. Moreover, the latent formulation enables, for the first time, training an anonymizer with gradients from multiple downstream tasks, which is impractical for pixel-level anonymization. Furthermore, our novel protocols for assessing gender bias contribute to the development of more responsible and unbiased video understanding models.
+          We proposed a learned shared-memory mechanism for parallel agentic systems that enables selective reuse of intermediate information across teams. By introducing a global memory bank and a lightweight controller that learns which steps are worth sharing, our approach reduces redundant computation while matching or improving task performance. Experiments on the AssistantBench and GAIA benchmarks demonstrate consistent wall-clock runtime reductions compared to memory-free parallel baselines, whereas naive memory sharing fails to achieve similar gains. These results suggest that treating memory admission as a learned control problem is a promising direction for improving the efficiency of parallel agentic frameworks.
         </p>
         <p>
           For more technical details and results, check out our attached main paper, thank you!
@@ -381,17 +385,17 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>
-@inproceedings{fioresi2025privacy,
-  title={Privacy Beyond Pixels: Latent Anonymization for Privacy-Preserving Video Understanding},
-  author={Fioresi, Joseph and Dave, Ishan Rajendrakumar and Shah, Mubarak},
+@inproceedings{fioresi2026learning,
+  title={Learning to Share: Selective Memory for Efficient Parallel Agentic Systems},
+  author={Fioresi, Joseph and Kulkarni, Parth Parag and Vayani, Ashmal and Wang, Song and Shah, Mubarak},
   booktitle={arXiv},
-  year={2025}
+  year={2026}
 }
 </code></pre>
   </div>
 </section>
 
-<section class="section" id="acknowledgement">
+<!-- <section class="section" id="acknowledgement">
   <div class="container is-max-desktop">
     <h2 class="title is-4">Acknowledgement</h2>
     <div class="column has-text-justified">
@@ -400,14 +404,14 @@
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 
 
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
-         href="./static/images/albar_arxiv.pdf">
+         href="./static/images/lts_arxiv.pdf">
         <i class="fas fa-file-pdf"></i>
       </a>
       <a class="icon-link" href="https://github.com/joefioresi718" class="external-link" disabled>
