@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="SPLAVU utilizes latent anonymization to anonymize video features while maintaining utility performance for video understanding tasks.">
+  <meta name="keywords" content="SPLAVU, latent anonymization, privacy, action recognition, anomaly detection, temporal action detection, video understanding, ICLR 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Beyond Pixels: Latent Anonymization for Privacy-Preserving Video Understanding</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics
+  <script async src=""></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/ucf_hotbar_logo.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Privacy Beyond Pixels: Latent Anonymization for Privacy-Preserving Video Understanding<br>[ICLR 2026]</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://joefioresi718.github.io/">Joseph Fioresi</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://daveishan.github.io/">Ishan Rajendrakumar Dave</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=p8gsO3gAAAAJ&hl=en&oi=ao">Mubarak Shah</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Institute of Artificial Intelligence, University of Central Florida</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2502.00156"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href="./static/images/splavu_arxiv.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2511.08666"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/3a9qeJUD1GU?si=DlpYsj1AFW6iQX1J"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/UCF-CRCV/SPLAVU"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span> -->
+              <!-- Poster Link -->
+              <!-- <span class="link-block">
+                <a href="./static/images/splavu_poster.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-image"></i>
+                  </span>
+                  <span>Poster</span>
+                </a>
+              </span> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section class="hero teaser">
+	<center>
+		<div class="container is-max-desktop">
+			<div class="hero-body">
+			  <img src="./static/images/TeaserFigure.svg" alt="ALBAR Teaser" class="teaser-image">
+			  <h2 class="subtitle has-text-centered">
+				ALBAR classifies videos without relying on background or static foreground information.
+			  </h2>
+			</div>
+		  </div>
+	</center>
+</section> -->
+<style> 
+    /* .results-carousel {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-wrap: nowrap;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    } */
+
+	.gif-pair {
+      width: 100%;
+      height: 100%;
+      scroll-snap-align: start;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    /* Update these styles */
+    .prediction-container {
+      margin-top: 20px;  /* Space above first prediction */
+    }
+    
+    .prediction-line {
+      margin: 1px 0;     /* Reduced from 8px to 4px */
+      line-height: 0.5;    /* Reduced from 1.2 to 1 */
+    }
+
+    /* Add these new styles */
+    .gif-pair img {
+      width: 320px;      /* Set fixed width */
+      height: 240px;     /* Set fixed height */
+      object-fit: cover; /* Maintain aspect ratio and cover container */
+    }
+
+    /* Add these new styles to reduce spacing */
+    .title.is-4 {
+      margin-bottom: 1rem !important;  /* Reduce space below section titles */
+    }
+
+    .content h2 {
+      margin-top: 0.5rem !important;   /* Reduce space above content */
+    }
+
+    .column.has-text-justified {
+      margin-top: 0.5rem !important;   /* Reduce space above justified columns */
+    }
+
+    figure {
+      margin-top: 1rem !important;     /* Reduce space above figures */
+    }
+
+    /* Add this new style to reduce space between sections */
+    .section {
+      padding: 1.5rem 1.5rem !important;  /* Reduce from default 3rem padding */
+    }
+
+    /* Update existing spacing styles */
+    .title.is-4 {
+      margin-bottom: 1rem !important;
+      margin-top: 1rem !important;     /* Add top margin for subsection titles */
+    }
+
+    .content h2 {
+      margin-top: 0.5rem !important;
+    }
+
+    .column.has-text-justified {
+      margin-top: 0.5rem !important;
+    }
+
+    figure {
+      margin-top: 1rem !important;
+      margin-bottom: 1.5rem !important;  /* Add consistent bottom margin for figures */
+    }
+</style>
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce a novel formulation of visual privacy preservation for video foundation models that operates entirely in the latent space. While spatio-temporal features learned by foundation models have deepened general understanding of video content, sharing or storing these extracted visual features for downstream tasks inadvertently reveals sensitive personal information like skin color, gender, or clothing. Current privacy preservation methods focus on input-pixel-level anonymization, which requires retraining the entire utility video model and results in task-specific anonymization, making them unsuitable for recent video foundational models. To address these challenges, we introduce a lightweight Anonymizing Adapter Module (AAM) that removes private information from video features while retaining general task utility. AAM can be applied in a plug-and-play fashion to frozen video encoders, minimizing the computational burden of finetuning and re-extracting features. Our framework employs three newly designed training objectives: (1) a clip-level self-supervised privacy objective to reduce mutual information between static clips, (2) a co-training objective to retain utility across seen tasks, and (3) a latent consistency loss for generalization on unseen tasks. Our extensive evaluations demonstrate a significant <strong>35%</strong> reduction in privacy leakage while maintaining near-baseline utility performance across various downstream tasks: Action Recognition (Kinetics400, UCF101, HMDB51), Temporal Action Detection (THUMOS14), and Anomaly Detection (UCF-Crime). We also provide an analysis on anonymization for sensitive <em>temporal</em> attribute recognition. Additionally, we propose new protocols for assessing gender bias in action recognition models, showing that our method effectively mitigates such biases and promotes more equitable video understanding.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+	  <div class="container column is-four-fifths">
+		<center>
+			<h2 class="title is-3">Latent Space Anonymization</h2>
+		</center>
+		<div class="teaser-figure" style="margin-top: 0.75rem;">
+			<center>
+				<figure style="display: inline-block; margin: 0;">
+					<img src="./static/images/teaser_fig.svg" alt="Teaser Figure" style="max-width:100%; height:auto;">
+					<figcaption style="text-align: center; margin-top: 0.5rem;"><b>Figure 1:</b> Our proposed latent anonymization setup (<span style="color: red;">red</span>) utilizes large pretrained video encoders, applying a lightweight anonymizer that maintains performance on <em>multiple</em> video understanding tasks while strongly <u>reducing</u> performance on private attribute prediction tasks (right).</figcaption>
+				</figure>
+			</center>
+		</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="paper-details">
+	<div class="container is-max-desktop">
+		<div class="columns is-centered">
+			<h2 class="title is-3">Paper Details</h2>
+		</div>
+    <h2 class="title is-4">Method Diagram</h2>
+    <div class="column has-text-justified">
+      <div class="method-diagram">
+        <img style="padding-top:10px" src="./static/images/main_architecture.svg">
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Figure 2:</b> Workflow illustrating the SPLAVU training process. The process begins with a video clip, from which two random frames are sampled to create static clips. All clips are passed through the frozen video encoder to extract latent features, then further processed by our Anonymization Adapter Module (AAM). The temporal clip features are used for the latent consistency loss and given to the set of task-specific classifier heads. The two static clip features are utilized in the self-supervised mutual information minimization objective. Gradients from all losses are back-propagated through AAM.
+        </figcaption>
+      </div>
+    </div>
+
+    <h2 class="title is-4" style="margin-top: 2rem;">Anonymization with Multitask Co-training</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        To retain the action understanding capabilities of the pretrained model, we employ a co-training framework where multiple tasks collaborate to optimize performance. The action classifier head is trained using the standard cross-entropy loss. Our latent formulation enables, for the first time, anonymization training using gradients from alternate downstream utility tasks, namely Temporal Action Detection (TAD) and Anomaly Detection (AD). As such, we integrate training objectives from state-of-the-art approaches in TAD and AD. 
+      </h2>
+      <!-- <div class="column is-centered">
+        <img style="display: flex; width: 30%; height: 30%; margin: auto;" src="./static/images/adv.svg">
+      </div> -->
+      
+    </div>
+
+    <h2 class="title is-4">Regularization via Latent Consistency</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        Early experiments with the privacy and utility losses indicated that the anonymization process tends to overfit to the proxy-utility tasks used in training, compromising its effectiveness on unseen tasks. Consequently, the primary motivation behind introducing our latent consistency objective is to ensure that the anonymization learned by the model remains generalizable and is not biased toward the specific utility task(s) it is trained on. This can be accomplished by regularizing the anonymization to preserve the general latent structure of the utility encoder. To this end, we propose a latent consistency loss that encourages the model to preserve important latent features while still achieving privacy preservation.
+      </h2>
+      <div class="column is-centered">
+        <img style="display: flex; width: 50%; height: 50%; margin: auto;" src="./static/images/latent_consistency.svg">
+      </div>
+      
+    </div>
+
+    <h2 class="title is-4">Clip-Level Self-Supervised Privacy Objective</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        Our clip-level self-supervised budget privacy objective is the key component for facilitating anonymization without requiring private attribute labels. The intuition is that two frames share a lot of mutual information, so if we <em>minimize</em> the similarity between them, the shared spatial information gets destroyed. A crucial difference setting SPLAVU apart from prior works is that the anonymizer works across the temporal dimension using 3D clip features instead of a 2D U-Net. This way, when combined with utility task losses, the anonymization model learns to remove all spatial information, maintaining only temporal information useful for solving the utility task.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">Results</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        <p>
+          Below are quantitative results covering privacy protocols and a variety of downstream tasks. We observe in Table 1 that our approach consistently generalizes well across all tasks, closely maintaining the performance of the non-anonymized videos. In contrast, previous methods struggle to preserve performance uniformly across tasks, evident in the temporal action detection results. Experiments with large video foundation models see similar performance trends, confirming the efficacy and scalability of SPLAVU.
+        </p>
+      </h2>
+      <figure>
+        <img src="./static/images/results_table.png">
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Table 1:</b> Performance of anonymization methods across a downstream task evaluation suite. Methods in <span style="color: gray;">gray</span> train using private attribute labels. Our method achieves a strong improvement in privacy-preservation with minimal reduction in task performance.
+        </figcaption>
+      </figure>
+      <h2 class="title is-4">Task Ablation</h2>
+      <h2 class="content has-text-justified">
+        Our important ablation in Table 2 demonstrates the effects of training our anonymizer without specific tasks. Notably, the <span style="color: cyan;">highlighted cells</span> show impressive generalization to unseen tasks with just a minor drop in performance compared to training on them. For example, looking at row (c) shows anonymization training with only action detection, yet the performance on action recognition and anomaly detection remain within <strong>1.3%</strong> of the non-anonymized score. Across the board, thanks to the latent consistency loss, performance is not dependent on having seen the given utility task during training, proving that SPLAVU can effectively <em>generalize to unseen tasks</em>.
+      </h2>
+      <figure>
+        <img src="./static/images/task_ablation.png">
+        <figcaption style="text-align: center; margin-top: 10px;"><b>Table 2:</b> Ablation on tasks seen during anonymization training. The checkmark (<span style="color: gray;">✓</span>) labels seen tasks, x-mark (<span style="color: red;">X</span>) and <span style="color: cyan;">highlighted cells</span> indicate tasks unseen during training. Performance generalizes to unseen tasks, while directly training further improves results.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="bias-evaluation">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">Bias Evaluation</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        The first row of Table 3 shows the performance difference between each gender presentation subclass in the NTU-Bias-F protocol, where the action <em>brush_hair</em> is chosen as the gendered shortcut action label. The baseline performance disparity between perceived gender subclasses is an unacceptably large 9.42%. Applying latent anonymization impressively reduces this gap by a relative <strong>42.3%</strong>. The second row includes results for the complimentary protocol NTU-Bias-M (also <em>brush_hair</em> shortcut). Interestingly, the baseline subclass performance disparity is less than that of NTU-Bias-F (5.00%), but our method is still capable of reducing this unfair split and improving overall performance.
+
+        To confirm that these observations hold true in a real-world setting, we look at the final row of Table 2 to see the performance on the TSH protocol. Notably, our method improves the both the classifier quality and fairness. In this realistic scenario with a naturally occurring bias, SPLAVU reduces the gap between perceived gender subclasses by an astonishing relative <strong>39.5%</strong>. Please refer to the paper for more details on protocol creation.
+      </h2>
+      <figure>
+        <img src="./static/images/bias_evaluation.png">
+        <figcaption style="text-align: center; margin-top: 10px;">
+          <b>Table 3:</b> Bias evaluation across gendered groups; anonymization reduces subclass accuracy gaps.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+ 
+ 
+<section class="section" id="conclusion">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">Conclusion</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        <p>
+          We propose an innovative privacy-preserving method via a novel formulation of latent space anonymization called SPLAVU. Our method is the first to enable generalized anonymization for unprecedented performance across various downstream video understanding tasks, including action recognition, anomaly detection, and temporal action detection. It employs a clip-level self-supervised privacy budget within the latent space, coupled with a latent consistency loss to maintain its powerful generalization capability. Moreover, the latent formulation enables, for the first time, training an anonymizer with gradients from multiple downstream tasks, which is impractical for pixel-level anonymization. Furthermore, our novel protocols for assessing gender bias contribute to the development of more responsible and unbiased video understanding models.
+        </p>
+        <p>
+          For more technical details and results, check out our attached main paper, thank you!
+        </p>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+@inproceedings{fioresi2025privacy,
+  title={Privacy Beyond Pixels: Latent Anonymization for Privacy-Preserving Video Understanding},
+  author={Fioresi, Joseph and Dave, Ishan Rajendrakumar and Shah, Mubarak},
+  booktitle={arXiv},
+  year={2025}
+}
+</code></pre>
+  </div>
+</section>
+
+<section class="section" id="acknowledgement">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4">Acknowledgement</h2>
+    <div class="column has-text-justified">
+      <h2 class="content has-text-justified">
+        This work was supported in part by the National Science Foundation (NSF) and Center for Smart Streetscapes (CS3) under NSF Cooperative Agreement No. EEC-2133516.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/images/albar_arxiv.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/joefioresi718" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is based on the source code of the <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies website</a>, which is
+            licensed under a <a rel="license"
+								href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+								Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
