@@ -1,8 +1,8 @@
-# SPLAVU
+# Learning to Share
 
 This is the repository that contains source code for the [Learning to Share (LTS) website](https://joefioresi718.github.io/LTS_webpage/).
 
-If you find SPLAVU useful for your work please cite:
+If you find LTS useful for your work please cite:
 ```
 @inproceedings{fioresi2026learning,
   title={Learning to Share: Selective Memory for Efficient Parallel Agentic Systems},
