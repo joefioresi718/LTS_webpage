@@ -262,7 +262,7 @@
 		<div class="teaser-figure" style="margin-top: 0.75rem;">
 			<center>
 				<figure style="display: inline-block; margin: 0;">
-					<img src="./static/images/teaser_fig.svg" alt="Teaser Figure" style="max-width:69%; height:auto;">
+					<img src="./static/images/teaser_fig.svg" alt="Teaser Figure" style="max-width:60%; height:auto;">
 					<figcaption style="text-align: center; margin-top: 0.5rem;"><b>Figure 1:</b> <b>Shared memory reduces redundant computation in parallel agentic execution.</b> Comparison of parallel agent teams solving a long-horizon task <i>without</i> (top) and <i>with</i> (bottom) shared memory. (a) Without shared memory, teams independently repeat overlapping intermediate steps (e.g., web search, table parsing, code writing), and errors in one branch propagate additional retries, increasing overall latency. (b) With a shared memory bank, teams reuse previously discovered intermediate results, avoiding redundant work and reducing error overhead. As a result, the system converges in fewer total steps and lower wall-clock time.</figcaption>
 				</figure>
 			</center>
@@ -324,7 +324,7 @@
         We first analyze wall-clock completion time on AssistantBench. Figure 3 shows a cumulative distribution function (CDF) plot of completion time for the baseline parallel agentic system and Learning to Share (<strong>LTS</strong>). Our shared-memory approach consistently completes tasks faster than M1-Parallel, despite the additional overhead of maintaining a memory. Compared to M1-Parallel without memory, shared memory reduces mean completion time by an average of at <b>8.4 minutes</b> and shifts the entire runtime distribution leftward, indicating faster convergence across tasks. <b>Table 3</b> additionally shows the average runtime of each task in seconds.
       </h2>
       <figure>
-        <img src="./static/images/runtime_cdf.svg" style="max-width: 85%; height: auto; display: block; margin: 0 auto;">
+        <img src="./static/images/runtime_cdf.svg" style="max-width: 65%; height: auto; display: block; margin: 0 auto;">
         <figcaption style="text-align: center; margin-top: 10px;">
           <b>Figure 3:</b> Cumulative distribution of wall-clock completion times on AssistantBench. Our <strong>LTS</strong> shared-memory approach shifts the runtime distribution left relative to memory-free M1-Parallel, indicating faster completion for a larger fraction of tasks. Selectively sharing intermediate results reduces redundant computation and lowers overall latency.
         </figcaption>
