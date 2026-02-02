@@ -324,7 +324,7 @@
         We first analyze wall-clock completion time on AssistantBench. Figure 3 shows a cumulative distribution function (CDF) plot of completion time for the baseline parallel agentic system and Learning to Share (<strong>LTS</strong>). Our shared-memory approach consistently completes tasks faster than M1-Parallel, despite the additional overhead of maintaining a memory. Compared to M1-Parallel without memory, shared memory reduces mean completion time by an average of at <b>8.4 minutes</b> and shifts the entire runtime distribution leftward, indicating faster convergence across tasks. <b>Table 3</b> additionally shows the average runtime of each task in seconds.
       </h2>
       <figure>
-        <img src="./static/images/runtime_cdf.svg">
+        <img src="./static/images/runtime_cdf.svg" style="max-width: 85%; height: auto; display: block; margin: 0 auto;">
         <figcaption style="text-align: center; margin-top: 10px;">
           <b>Figure 3:</b> Cumulative distribution of wall-clock completion times on AssistantBench. Our <strong>LTS</strong> shared-memory approach shifts the runtime distribution left relative to memory-free M1-Parallel, indicating faster completion for a larger fraction of tasks. Selectively sharing intermediate results reduces redundant computation and lowers overall latency.
         </figcaption>
@@ -356,7 +356,7 @@
         Table 2 compares different strategies for admitting intermediate steps into shared memory. All memory-enabled variants reduce overall runtime relative to the memory-free baseline, confirming that cross-team reuse of intermediate results improves execution efficiency. However, naively admitting all intermediate steps (<strong>LTS-AddAll</strong>) yields mixed performance, with reduced runtime but a drop in task accuracy, indicating that unfiltered memory can introduce irrelevant or misleading information into team contexts. Filtering memory using a full LLM (<strong>LTS-LLM</strong>) improves accuracy over <strong>LTS-AddAll</strong>, but incurs additional computational overhead. In contrast, the proposed learned selective memory (<strong>LTS</strong>) achieves the best accuracy on both benchmarks while maintaining low runtime. These results highlight the importance of learned memory admission for balancing efficiency gains from shared memory with reliable task performance. This robustness arises from the usage-aware reinforcement learning objective, which explicitly rewards useful memory admissions that contribute to successful task completion, discouraging the retention of noisy steps.
       </h2>
       <figure>
-        <img src="./static/images/ablation_table.png">
+        <img src="./static/images/ablation_table.png" style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
         <figcaption style="text-align: center; margin-top: 10px;"><b>Table 2:</b> Comparison of shared memory admission strategies. We report task accuracy and average runtime (GPT-5.1). Naively sharing all intermediate steps (<strong>LTS-AddAll</strong>) reduces runtime but can hurt accuracy due to noisy memories. LLM-based filtering (<strong>LTS-LLM</strong>) partially mitigates this trade-off. The proposed selective memory (<strong>LTS</strong>) achieves the best overall balance, improving task accuracy while substantially reducing runtime.</figcaption>
       </figure>
     </div>
