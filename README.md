@@ -7,7 +7,7 @@ If you find LTS useful for your work please cite:
 @inproceedings{fioresi2026learning,
   title={Learning to Share: Selective Memory for Efficient Parallel Agentic Systems},
   author={Fioresi, Joseph and Kulkarni, Parth Parag and Vayani, Ashmal and Wang, Song and Shah, Mubarak},
-  booktitle={arxiv},
+  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},
   year={2026}
 }
 ```
